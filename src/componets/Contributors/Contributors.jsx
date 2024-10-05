@@ -1,6 +1,3 @@
-// src/components/Contributors.jsx
-import React from 'react';
-
 const contributors = [
   {
     name: 'Mynul Islam',

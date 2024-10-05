@@ -4,7 +4,7 @@ DevTools is a React-based application offering a suite of quick and easy-to-use 
 
 ## Features
 - **Markdown to LinkedIn Post:** Convert Markdown text to LinkedIn-friendly format. (done)
-- **Color Picker:** Choose and copy colors quickly.
+- **Color Picker:** Choose and copy colors quickly. (done)
 - **Font Picker:** Browse and select fonts easily.
 - **Image to Base64 Converter:** Convert images to Base64 encoding.
 - **JSON Formatter:** Format and beautify JSON strings.
