@@ -1,0 +1,24 @@
+.key {
+  color: #f92672;
+}
+
+.string {
+  color: #e6db74;
+}
+
+.number {
+  color: #ae81ff;
+}
+
+.boolean {
+  color: #66d9ef;
+}
+
+.null {
+  color: #fd971f;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
