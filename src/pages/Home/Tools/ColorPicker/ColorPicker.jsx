@@ -1,22 +1,24 @@
 // src/components/tools/ColorPicker.jsx
-import React, { useState } from 'react';
-import { SketchPicker } from 'react-color'; // Using SketchPicker from react-color
-import { FaCopy } from 'react-icons/fa';
+import { useState } from "react";
+import { SketchPicker } from "react-color"; // Using SketchPicker from react-color
+import { FaCopy } from "react-icons/fa";
 
 const ColorPicker = () => {
-  const [color, setColor] = useState('#ffffff');
+  const [color, setColor] = useState("#ffffff");
   const [copied, setCopied] = useState({
     hex: false,
     rgb: false,
     hsl: false,
   });
 
+  // @ts-ignore
   const handleChangeComplete = (selectedColor) => {
     setColor(selectedColor.hex);
     // Reset copied states when color changes
     setCopied({ hex: false, rgb: false, hsl: false });
   };
 
+  // @ts-ignore
   const copyToClipboard = (value, type) => {
     navigator.clipboard.writeText(value);
     setCopied((prev) => ({ ...prev, [type]: true }));
@@ -26,9 +28,10 @@ const ColorPicker = () => {
   };
 
   // Convert HEX to RGB
+  // @ts-ignore
   const hexToRgb = (hex) => {
     // Remove the hash if present
-    hex = hex.replace(/^#/, '');
+    hex = hex.replace(/^#/, "");
 
     // Parse r, g, b values
     let bigint = parseInt(hex, 16);
@@ -40,6 +43,7 @@ const ColorPicker = () => {
   };
 
   // Convert HEX to HSL
+  // @ts-ignore
   const hexToHsl = (hex) => {
     // Convert hex to RGB first
     let r = 0,
@@ -82,9 +86,11 @@ const ColorPicker = () => {
         default:
           break;
       }
+      // @ts-ignore
       h /= 6;
     }
 
+    // @ts-ignore
     h = Math.round(h * 360);
     s = Math.round(s * 100);
     l = Math.round(l * 100);
@@ -119,7 +125,7 @@ const ColorPicker = () => {
                 <p className="text-lg font-semibold">{color}</p>
               </div>
               <button
-                onClick={() => copyToClipboard(color, 'hex')}
+                onClick={() => copyToClipboard(color, "hex")}
                 className="btn btn-ghost btn-square"
               >
                 <FaCopy />
@@ -136,7 +142,7 @@ const ColorPicker = () => {
                 <p className="text-lg font-semibold">{hexToRgb(color)}</p>
               </div>
               <button
-                onClick={() => copyToClipboard(hexToRgb(color), 'rgb')}
+                onClick={() => copyToClipboard(hexToRgb(color), "rgb")}
                 className="btn btn-ghost btn-square"
               >
                 <FaCopy />
@@ -153,7 +159,7 @@ const ColorPicker = () => {
                 <p className="text-lg font-semibold">{hexToHsl(color)}</p>
               </div>
               <button
-                onClick={() => copyToClipboard(hexToHsl(color), 'hsl')}
+                onClick={() => copyToClipboard(hexToHsl(color), "hsl")}
                 className="btn btn-ghost btn-square"
               >
                 <FaCopy />

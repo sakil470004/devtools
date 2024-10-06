@@ -1,7 +1,6 @@
 // src/components/Navbar.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaTools, FaUserFriends, FaEnvelope } from 'react-icons/fa';
+import { FaTools } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
