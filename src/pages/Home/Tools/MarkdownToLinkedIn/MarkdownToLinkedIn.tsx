@@ -1,35 +1,37 @@
 // src/components/tools/MarkdownToLinkedIn/MarkdownToLinkedIn.jsx
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { FaLinkedin, FaCopy } from "react-icons/fa";
 
 const MarkdownToLinkedIn = () => {
   const [markdown, setMarkdown] = useState("");
   const [linkedinText, setLinkedinText] = useState("");
 
-  // Function to convert Markdown to LinkedIn-style text
-  const convertMarkdownToLinkedIn = (markdown: string) => {
-    // Replace headers (e.g., ### Header) by just removing the #
-    let linkedinText = markdown.replace(/^#+\s/gm, '');
+  // // Function to convert Markdown to LinkedIn-style text
+  // const convertMarkdownToLinkedIn = (markdown: string) => {
+  //   // Replace headers (e.g., ### Header) by just removing the #
+  //   let linkedinText = markdown.replace(/^#+\s/gm, '');
 
-    // Replace bold (**) or (__) by bold for LinkedIn style
-    linkedinText = linkedinText.replace(/\*\*(.*?)\*\*/g, '$1');
-    linkedinText = linkedinText.replace(/__(.*?)__/g, '<b>$1</b>');
+  //   // Replace bold (**) or (__) by bold for LinkedIn style
+  //   linkedinText = linkedinText.replace(/\*\*(.*?)\*\*/g, '$1');
+  //   linkedinText = linkedinText.replace(/__(.*?)__/g, '<b>$1</b>');
 
-    // Replace italic (*) or (_) by _word_ for LinkedIn style
-    linkedinText = linkedinText.replace(/\*(.*?)\*/g, '_$1_');
-    linkedinText = linkedinText.replace(/_(.*?)_/g, '_$1_');
+  //   // Replace italic (*) or (_) by _word_ for LinkedIn style
+  //   linkedinText = linkedinText.replace(/\*(.*?)\*/g, '_$1_');
+  //   linkedinText = linkedinText.replace(/_(.*?)_/g, '_$1_');
 
-    // Convert links [text](url) to just the URL
-    linkedinText = linkedinText.replace(/\[.*?\]\((.*?)\)/g, '$1');
+  //   // Convert links [text](url) to just the URL
+  //   linkedinText = linkedinText.replace(/\[.*?\]\((.*?)\)/g, '$1');
 
-    // Convert bullet points - or * to •
-    linkedinText = linkedinText.replace(/^\s*[-*]\s+/gm, '• ');
+  //   // Convert bullet points - or * to •
+  //   linkedinText = linkedinText.replace(/^\s*[-*]\s+/gm, '• ');
 
-    // Remove blockquotes > for LinkedIn format
-    linkedinText = linkedinText.replace(/^>\s+/gm, '');
+  //   // Remove blockquotes > for LinkedIn format
+  //   linkedinText = linkedinText.replace(/^>\s+/gm, '');
 
-    return linkedinText;
-  };
+  //   return linkedinText;
+  // };
+
   const convertMarkdownToHTML = (markdown: string) => {
     // Replace headers (e.g., ### Header)
     let htmlText = markdown
@@ -100,7 +102,7 @@ const MarkdownToLinkedIn = () => {
     selection?.removeAllRanges();
     document.body.removeChild(tempElement);
   
-    alert("Copied to clipboard!");
+    toast.success("Copied to clipboard!");
   }
   return (
     <div className="container mx-auto px-4 py-10">

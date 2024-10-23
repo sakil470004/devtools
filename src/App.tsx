@@ -6,10 +6,12 @@ import ColorPicker from "./pages/Home/Tools/ColorPicker/ColorPicker";
 import JSONFormatter from "./pages/Home/Tools/JsonFormatter/JsonFormatter";
 import MarkdownToLinkedIn from "./pages/Home/Tools/MarkdownToLinkedIn/MarkdownToLinkedIn";
 
+
 function App() {
   return (
     <>
       <Routes>
+
         {/* <Route
           path="/"
           element={authUser ? <Home /> : <Navigate to={"/login"} />}
