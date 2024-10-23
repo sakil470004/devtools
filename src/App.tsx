@@ -2,13 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./pages/Home/Home";
-import ColorPicker from "./pages/Home/Tools/ColorPicker/ColorPicker";
 import JSONFormatter from "./pages/Home/Tools/JsonFormatter/JsonFormatter";
 import MarkdownToLinkedIn from "./pages/Home/Tools/MarkdownToLinkedIn/MarkdownToLinkedIn";
 import FontPicker from "./pages/Home/Tools/FontPicker/FontPicker";
 import ImageToBase64 from "./pages/Home/Tools/ImageToBase64/ImageToBase64";
 import URLEncoder from "./pages/Home/Tools/URLEncoder/URLEncoder";
 import StringConverters from "./pages/Home/Tools/StringConverters/StringConverters";
+import ColorPicker from "./pages/Home/Tools/ColorPicker/ColorPicker";
 const fonts = [
   'Arial, sans-serif',
   'Verdana, Geneva, sans-serif',
