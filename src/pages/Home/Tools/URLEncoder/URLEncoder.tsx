@@ -1,6 +1,6 @@
 // src/components/tools/URLEncoder/URLEncoder.tsx
 import React, { useState } from 'react';
-import { FaLink, FaCopy, FaExchangeAlt } from 'react-icons/fa';
+import { FaLink, FaCopy} from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const URLEncoder: React.FC = () => {
@@ -19,7 +19,7 @@ const URLEncoder: React.FC = () => {
     setInput(value);
     try {
       setDecodedURL(decodeURIComponent(value));
-    } catch (error) {
+    } catch {
       toast.error("Invalid URL encoding");
     }
   };

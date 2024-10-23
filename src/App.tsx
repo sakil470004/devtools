@@ -8,6 +8,7 @@ import MarkdownToLinkedIn from "./pages/Home/Tools/MarkdownToLinkedIn/MarkdownTo
 import FontPicker from "./pages/Home/Tools/FontPicker/FontPicker";
 import ImageToBase64 from "./pages/Home/Tools/ImageToBase64/ImageToBase64";
 import URLEncoder from "./pages/Home/Tools/URLEncoder/URLEncoder";
+import StringConverters from "./pages/Home/Tools/StringConverters/StringConverters";
 const fonts = [
   'Arial, sans-serif',
   'Verdana, Geneva, sans-serif',
@@ -67,6 +68,7 @@ function App() {
         <Route path="/image-to-base64" element={<ImageToBase64 />} />
         <Route path="/json-formatter" element={<JSONFormatter />} />
         <Route path="/url-encoder" element={<URLEncoder />} />
+        <Route path="/string-converters" element={<StringConverters />} />
       </Routes>
     </>
   );

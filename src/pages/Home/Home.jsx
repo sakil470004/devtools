@@ -26,9 +26,7 @@ const HomePage = () => {
     { name: "JSON Formatter", path: "/json-formatter", icon: <FaCode /> },
     { name: "URL Encoder and Decoder", path: "/url-encoder", icon: <FaLink /> },
     { name: "String Converters", path: "/string-converters", icon: <FaExchangeAlt /> },
-    { name: "String Trim", path: "/string-trim", icon: <FaCompress /> },
-    { name: "String Shuffle", path: "/string-shuffle", icon: <FaMagic /> },
-    { name: "String Sort", path: "/string-sort", icon: <FaSortAlphaDown /> },
+
     // Add more tools here with appropriate icons
   ];
 
