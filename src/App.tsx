@@ -7,6 +7,7 @@ import JSONFormatter from "./pages/Home/Tools/JsonFormatter/JsonFormatter";
 import MarkdownToLinkedIn from "./pages/Home/Tools/MarkdownToLinkedIn/MarkdownToLinkedIn";
 import FontPicker from "./pages/Home/Tools/FontPicker/FontPicker";
 import ImageToBase64 from "./pages/Home/Tools/ImageToBase64/ImageToBase64";
+import URLEncoder from "./pages/Home/Tools/URLEncoder/URLEncoder";
 const fonts = [
   'Arial, sans-serif',
   'Verdana, Geneva, sans-serif',
@@ -65,6 +66,7 @@ function App() {
         <Route path="/font-picker" element={<FontPicker fonts={fonts} />} />
         <Route path="/image-to-base64" element={<ImageToBase64 />} />
         <Route path="/json-formatter" element={<JSONFormatter />} />
+        <Route path="/url-encoder" element={<URLEncoder />} />
       </Routes>
     </>
   );
