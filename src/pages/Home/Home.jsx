@@ -1,15 +1,13 @@
 // src/components/HomePage.jsx
-import { 
-  FaCode, 
-  FaCompress, 
-  FaExchangeAlt, 
-  FaFont, 
-  FaImage, 
-  FaLink, 
-  FaMagic, 
-  FaMarkdown, 
-  FaPalette, 
-  FaSortAlphaDown 
+import {
+  FaCode,
+  FaExchangeAlt,
+  FaFont,
+  FaImage,
+  FaLink,
+  FaMarkdown,
+  FaPalette,
+
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Footer from "../../componets/Footer/Footer";

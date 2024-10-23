@@ -1,4 +1,4 @@
-// src/components/tools/Contact/Contact.tsx
+// src/components/tools/Contact/Contact.jsx
 import { useState } from "react";
 import { FaEnvelope, FaUser, FaCommentAlt, FaPaperPlane } from "react-icons/fa";
 
@@ -9,10 +9,12 @@ const Contact = () => {
     message: "",
   });
 
+  // @ts-ignore
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // @ts-ignore
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send email or store in database)

@@ -4,10 +4,16 @@ import { FaPalette, FaCopy, FaEyeDropper } from 'react-icons/fa';
 import { SketchPicker } from 'react-color';
 import toast from 'react-hot-toast';
 
+declare global {
+  interface Window {
+    EyeDropper: new () => { open: () => Promise<{ sRGBHex: string }> };
+  }
+}
+
 const ColorPicker: React.FC = () => {
   const [color, setColor] = useState('#000000');
 
-  const handleChange = (color: any) => {
+  const handleChange = (color: { hex: React.SetStateAction<string>; }) => {
     setColor(color.hex);
   };
 
@@ -43,7 +49,8 @@ const ColorPicker: React.FC = () => {
     const b = parseInt(color.slice(5, 7), 16) / 255;
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    let h = 0, s = 0, l = (max + min) / 2;
+    let h = 0, s = 0;
+    const l = (max + min) / 2;
     if (max !== min) {
       const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);

@@ -1,5 +1,4 @@
-// src/components/tools/Contributors/Contributors.tsx
-import React from 'react';
+// src/components/tools/Contributors/Contributors.jsx
 import { FaGithub } from 'react-icons/fa';
 
 const contributors = [
