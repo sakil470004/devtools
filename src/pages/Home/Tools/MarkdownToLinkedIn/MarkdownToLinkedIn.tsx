@@ -2,106 +2,58 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaLinkedin, FaCopy } from "react-icons/fa";
+import { marked } from 'marked';
 
 const MarkdownToLinkedIn = () => {
   const [markdown, setMarkdown] = useState("");
   const [linkedinText, setLinkedinText] = useState("");
 
-  // // Function to convert Markdown to LinkedIn-style text
-  // const convertMarkdownToLinkedIn = (markdown: string) => {
-  //   // Replace headers (e.g., ### Header) by just removing the #
-  //   let linkedinText = markdown.replace(/^#+\s/gm, '');
 
-  //   // Replace bold (**) or (__) by bold for LinkedIn style
-  //   linkedinText = linkedinText.replace(/\*\*(.*?)\*\*/g, '$1');
-  //   linkedinText = linkedinText.replace(/__(.*?)__/g, '<b>$1</b>');
 
-  //   // Replace italic (*) or (_) by _word_ for LinkedIn style
-  //   linkedinText = linkedinText.replace(/\*(.*?)\*/g, '_$1_');
-  //   linkedinText = linkedinText.replace(/_(.*?)_/g, '_$1_');
+  const convertMarkdownToHTML = async (markdown: string): Promise<string> => {
 
-  //   // Convert links [text](url) to just the URL
-  //   linkedinText = linkedinText.replace(/\[.*?\]\((.*?)\)/g, '$1');
+    markdown = markdown.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    return marked.parse(markdown);
+  };
 
-  //   // Convert bullet points - or * to •
-  //   linkedinText = linkedinText.replace(/^\s*[-*]\s+/gm, '• ');
 
-  //   // Remove blockquotes > for LinkedIn format
-  //   linkedinText = linkedinText.replace(/^>\s+/gm, '');
-
-  //   return linkedinText;
-  // };
-
-  const convertMarkdownToHTML = (markdown: string) => {
-    // Replace headers (e.g., ### Header)
-    let htmlText = markdown
-      .replace(/^###\s(.*$)/gim, '<h3>$1</h3>') // H3
-      .replace(/^##\s(.*$)/gim, '<h2>$1</h2>')  // H2
-      .replace(/^#\s(.*$)/gim, '<h1>$1</h1>');  // H1
-
-    // Replace bold (**) or (__) with <strong>
-    htmlText = htmlText
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/__(.*?)__/g, '<strong>$1</strong>');
-
-    // Replace italic (*) or (_) with <em>
-    htmlText = htmlText
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/_(.*?)_/g, '<em>$1</em>');
-
-    // Convert links [text](url) to <a href="url">text</a>
-    htmlText = htmlText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
-
-    // Convert bullet points - or * to <ul><li>
-    htmlText = htmlText
-      .replace(/^\s*[-*]\s+(.*$)/gm, '<li>$1</li>') // List items
-      .replace(/(<li>.*<\/li>)/g, '<ul>$1</ul>'); // Wrap in <ul> if not already wrapped
-
-    // Remove blockquotes > for HTML format
-    htmlText = htmlText.replace(/^>\s+/gm, '');
-
-    // Replace multiple spaces with &nbsp;
-    htmlText = htmlText.replace(/ {2,}/g, match => '&nbsp;'.repeat(match.length));
-
-    // Replace new lines with <br>
-    htmlText = htmlText.replace(/\n/g, '<br>');
-
-    return htmlText.trim();
-
-  }
   useEffect(() => {
-    if (markdown.trim()) {
-      setLinkedinText(convertMarkdownToHTML(markdown));
-    } else {
-      setLinkedinText("");
-    }
+    const convertAndSetText = async () => {
+      if (markdown.trim()) {
+        const html = await convertMarkdownToHTML(markdown);
+        setLinkedinText(html);
+      } else {
+        setLinkedinText("");
+      }
+    };
+    convertAndSetText();
   }, [markdown]);
 
   const handleCopy = () => {
     // Create a temporary element to hold the formatted text
     const tempElement = document.createElement('div');
     tempElement.innerHTML = linkedinText;
-  
+
     // Apply necessary styles to preserve formatting
     tempElement.style.position = 'fixed';
     tempElement.style.opacity = '0';
     tempElement.style.pointerEvents = 'none';
     document.body.appendChild(tempElement);
-  
+
     // Create a range and select the content
     const range = document.createRange();
     range.selectNodeContents(tempElement);
     const selection = window.getSelection();
     selection?.removeAllRanges();
     selection?.addRange(range);
-  
+
     // Copy the selected content to the clipboard
     document.execCommand('copy');
-  
+
     // Clean up
     selection?.removeAllRanges();
     document.body.removeChild(tempElement);
-  
+
     toast.success("Copied to clipboard!");
   }
   return (

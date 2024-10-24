@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/styled-components": "^5.1.34",
     "daisyui": "^4.12.12",
+    "marked": "^14.1.3",
     "react": "^18.3.1",
     "react-color": "^2.19.3",
     "react-dom": "^18.3.1",
