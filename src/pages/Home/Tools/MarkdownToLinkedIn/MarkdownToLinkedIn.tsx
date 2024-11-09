@@ -72,7 +72,7 @@ const MarkdownToLinkedIn = () => {
           </label>
           <textarea
             id="markdownInput"
-            className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none bg-white focus:ring-2 focus:ring-blue-500"
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
             placeholder="Enter your Markdown text here..."
@@ -88,7 +88,7 @@ const MarkdownToLinkedIn = () => {
           </label>
           <div
             id="linkedinOutput"
-            className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-auto"
+            className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none bg-white focus:ring-2 focus:ring-blue-500 overflow-auto"
             dangerouslySetInnerHTML={{ __html: linkedinText }}
 
           ></div>

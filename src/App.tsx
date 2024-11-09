@@ -9,6 +9,7 @@ import ImageToBase64 from "./pages/Home/Tools/ImageToBase64/ImageToBase64";
 import URLEncoder from "./pages/Home/Tools/URLEncoder/URLEncoder";
 import StringConverters from "./pages/Home/Tools/StringConverters/StringConverters";
 import ColorPicker from "./pages/Home/Tools/ColorPicker/ColorPicker";
+import ImageEditor from "./pages/Home/Tools/ImageEditor/ImageEditor";
 const fonts = [
   'Arial, sans-serif',
   'Verdana, Geneva, sans-serif',
@@ -62,8 +63,9 @@ function App() {
         /> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/color-picker" element={<ColorPicker />} />
         <Route path="/markdown-to-linkedin" element={<MarkdownToLinkedIn />} />
+        <Route path="/image-editor" element={<ImageEditor />} />
+        <Route path="/color-picker" element={<ColorPicker />} />
         <Route path="/font-picker" element={<FontPicker fonts={fonts} />} />
         <Route path="/image-to-base64" element={<ImageToBase64 />} />
         <Route path="/json-formatter" element={<JSONFormatter />} />

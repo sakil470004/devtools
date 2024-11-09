@@ -1,6 +1,7 @@
 // src/components/HomePage.jsx
 import {
   FaCode,
+  FaEdit,
   FaExchangeAlt,
   FaFont,
   FaImage,
@@ -18,6 +19,7 @@ import Contributors from "../../componets/Contributors/Contributors";
 const HomePage = () => {
   const tools = [
     { name: "Markdown to LinkedIn", path: "/markdown-to-linkedin", icon: <FaMarkdown /> },
+    { name: "Image Editor", path: "/image-editor", icon: <FaEdit /> },
     { name: "Color Picker", path: "/color-picker", icon: <FaPalette /> },
     { name: "Font Picker", path: "/font-picker", icon: <FaFont /> },
     { name: "Image to Base64 And Decode", path: "/image-to-base64", icon: <FaImage /> },
