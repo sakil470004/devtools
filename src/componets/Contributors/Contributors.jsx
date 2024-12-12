@@ -1,14 +1,14 @@
 // src/components/tools/Contributors/Contributors.jsx
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub } from "react-icons/fa";
 
 const contributors = [
   {
-    name: 'Mynul Islam',
-    github: 'https://github.com/sakil470004',
+    name: "Mynul Islam",
+    github: "https://github.com/sakil470004",
   },
   {
-    name: 'Mahmudul Hasan Nayeem',
-    github: 'https://github.com/hasannayeem71',
+    name: "Mahmudul Hasan Nayeem",
+    github: "https://github.com/mahmudulnayeem",
   },
   // Add more contributors here
 ];
@@ -26,7 +26,9 @@ const Contributors = () => {
               key={index}
               className="bg-white shadow-lg rounded-lg p-6 text-center transform hover:scale-105 transition-transform duration-300 ease-in-out"
             >
-              <h3 className="text-2xl font-semibold mb-4">{contributor.name}</h3>
+              <h3 className="text-2xl font-semibold mb-4">
+                {contributor.name}
+              </h3>
               <a
                 href={contributor.github}
                 target="_blank"
