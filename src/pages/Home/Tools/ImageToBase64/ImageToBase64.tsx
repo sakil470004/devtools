@@ -1,6 +1,6 @@
 // src/components/tools/ImageToBase64/ImageToBase64.tsx
 import React, { useState } from 'react';
-import { FaUpload, FaCopy, FaImage } from 'react-icons/fa';
+import {  FaCopy, FaImage } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
