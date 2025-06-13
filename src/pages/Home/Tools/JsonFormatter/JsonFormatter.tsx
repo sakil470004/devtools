@@ -39,42 +39,48 @@ const JSONFormatter: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2 className="text-3xl font-bold mb-6 text-center flex items-center justify-center">
-        <LuFileJson className="mr-2 text-blue-700" /> JSON Formatter
-      </h2>
-      <div className="flex sm:flex-row flex-col gap-2 items-center ">
-        <textarea
-          value={jsonInput}
-          className=" w-full h-[80vh] resize-none border rounded-md p-2 border-gray-500"
-          onChange={(e) => {
-            setJsonInput(e.target.value);
-            formatJSON(e.target.value);
-          }} // Handle textarea changes
-          placeholder="Paste your JSON here..."
-          rows={30}
-        />
-        <div className="w-full h-[80vh] relative">
-          <button
-            className="absolute right-2 top-4"
-            onClick={() => {
-              const textToCopy = output.replace(/<[^>]+>/g, "");
-              navigator.clipboard.writeText(textToCopy).then(() => {
-                setCopied(true);
-                setTimeout(() => {
-                  setCopied(false);
-                }, 3000);
-              });
-            }}
-          >
-            <span className="text-white bg-blue-500 px-4 py-2 rounded-md">
-              {copied ? "Copied" : "Copy"}
-            </span>
-          </button>
-          <pre
-            className="whitespace-pre-wrap bg-[#2b2b2b] p-4 rounded-md text-white  overflow-auto w-full h-full"
-            dangerouslySetInnerHTML={{ __html: output }}
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <div className="container mx-auto px-4 py-10 flex-1">
+        <div className="mb-12 text-center">
+          <div className="inline-block px-8 py-6 rounded-2xl shadow-xl bg-gradient-to-r from-blue-100/80 to-gray-50/80 border border-blue-200/60">
+            <h2 className="text-4xl font-extrabold mb-3 text-blue-700 tracking-tight font-mono drop-shadow-lg flex items-center justify-center">
+              <LuFileJson className="mr-2 text-blue-700" /> JSON Formatter
+            </h2>
+          </div>
+        </div>
+        <div className="flex sm:flex-row flex-col gap-2 items-center ">
+          <textarea
+            value={jsonInput}
+            className=" w-full h-[80vh] resize-none border rounded-md p-2 border-gray-500"
+            onChange={(e) => {
+              setJsonInput(e.target.value);
+              formatJSON(e.target.value);
+            }} // Handle textarea changes
+            placeholder="Paste your JSON here..."
+            rows={30}
           />
+          <div className="w-full h-[80vh] relative">
+            <button
+              className="absolute right-2 top-4"
+              onClick={() => {
+                const textToCopy = output.replace(/<[^>]+>/g, "");
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                  setCopied(true);
+                  setTimeout(() => {
+                    setCopied(false);
+                  }, 3000);
+                });
+              }}
+            >
+              <span className="text-white bg-blue-500 px-4 py-2 rounded-md">
+                {copied ? "Copied" : "Copy"}
+              </span>
+            </button>
+            <pre
+              className="whitespace-pre-wrap bg-[#2b2b2b] p-4 rounded-md text-white  overflow-auto w-full h-full"
+              dangerouslySetInnerHTML={{ __html: output }}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -66,11 +66,15 @@ const StringConverters: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-100 min-h-screen flex flex-col container mx-auto items-center justify-center py-10">
-            <div className="bg-white shadow-lg rounded-lg p-8 ">
-                <h2 className="text-4xl font-bold text-center mb-8 flex items-center justify-center text-blue-600">
-                    <FaExchangeAlt className="mr-2" /> String Converters Tool
-                </h2>
+        <div className="bg-gray-100 min-h-screen flex flex-col">
+            <div className="container mx-auto px-4 py-10 flex-1">
+                <div className="mb-12 text-center">
+                    <div className="inline-block px-8 py-6 rounded-2xl shadow-xl bg-gradient-to-r from-blue-100/80 to-gray-50/80 border border-blue-200/60">
+                        <h2 className="text-4xl font-extrabold mb-3 text-blue-700 tracking-tight font-mono drop-shadow-lg flex items-center justify-center">
+                            <FaExchangeAlt className="mr-2 text-blue-700" /> String Converters
+                        </h2>
+                    </div>
+                </div>
                 <div className="flex flex-col items-center mb-4 w-full">
                     <textarea
                         className="textarea textarea-bordered w-full h-32 p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"

@@ -959,166 +959,175 @@ const ImageEditor = () => {
     }
   }, [handleError]);
   return (
-    <div className="flex flex-col items-center gap-6 p-6 min-h-[100vh]">
-      <Card className="w-full max-w-6xl p-6">
-        <div className="flex flex-col gap-4">
-          {/* Error Alert */}
-          {error && (
-            <Alert variant="destructive" className="animate-in slide-in-from-top">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
-          {/* Header Controls */}
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Image Editor</h2>
-            <div className="flex gap-2">
-              {/* Upload Button */}
-              <Button
-                onClick={() => fileInputRef.current?.click()}
-                disabled={isLoading}
-                className="flex items-center gap-2"
-              >
-                {isLoading ? (
-                  <Loader className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Upload className="w-4 h-4" />
-                )}
-                Upload Image
-              </Button>
-
-              {/* History Controls */}
-              {image && (
-                <>
-                  <Button
-                    onClick={handleUndo}
-                    disabled={historyIndex <= 0 || isLoading}
-                    title="Undo"
-                  >
-                    <Undo className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    onClick={handleRedo}
-                    disabled={historyIndex >= history.length - 1 || isLoading}
-                    title="Redo"
-                  >
-                    <Redo className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    onClick={handleReset}
-                    disabled={!originalImage || isLoading}
-                    title="Reset"
-                  >
-                    <CircleOff className="w-4 h-4" />
-                    Reset
-                  </Button>
-                </>
-              )}
-            </div>
-            {/* Hidden File Input */}
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleImageUpload}
-              accept={ALLOWED_FILE_TYPES.join(',')}
-              className="hidden"
-            />
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <div className="container mx-auto px-4 py-10 flex-1">
+        <div className="mb-12 text-center">
+          <div className="inline-block px-8 py-6 rounded-2xl shadow-xl bg-gradient-to-r from-blue-100/80 to-gray-50/80 border border-blue-200/60">
+            <h2 className="text-4xl font-extrabold mb-3 text-blue-700 tracking-tight font-mono drop-shadow-lg flex items-center justify-center">
+              <Upload className="mr-2 text-blue-700" /> Image Editor
+            </h2>
           </div>
-
-          {/* Canvas Container */}
-          <div className="relative border rounded-lg overflow-hidden">
-            <div className="absolute inset-0 bg-checkered" /> {/* Background pattern */}
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-                <Loader className="w-8 h-8 animate-spin text-white" />
-              </div>
-            )}
-            <canvas
-              ref={canvasRef}
-              onClick={handleCanvasClick}
-              onMouseDown={handleCanvasMouseDown}
-              onMouseMove={handleCanvasMouseMove}
-              onMouseUp={handleCanvasMouseUp}
-              onMouseLeave={handleCanvasMouseUp}
-              className="relative z-[1] max-w-full h-auto cursor-pointer"
-            />
-        
-          {/* Empty State */}
-          {!image && !isLoading && (
-            <div className="text-center p-8 text-gray-500">
-              <Upload className="w-12 h-12 mx-auto mb-4" />
-              <p>Upload an image to begin editing</p>
-              <p className="text-sm mt-2">
-                Supports JPEG, PNG, GIF, and WebP formats
-              </p>
-            </div>
-          )}
         </div>
 
-        {/* Image Information */}
-        {image && (
-          <div className="text-sm text-gray-500 flex justify-between items-center">
-            <span>
-              Dimensions: {imageSize.width} × {imageSize.height} pixels
-            </span>
-            {isSaving && (
-              <span className="flex items-center gap-2">
-                <Loader className="w-4 h-4 animate-spin" />
-                Processing...
-              </span>
-            )}
-          </div>
-        )}
-
-        {/* Editor Controls */}
-        {image && (
+        <Card className="w-full max-w-6xl p-6 mx-auto">
           <div className="flex flex-col gap-4">
-            {/* Image Controls */}
-            <ImageControls
-              adjustments={adjustments}
-              setAdjustments={setAdjustments}
-              filter={filter}
-              setFilter={setFilter}
-              filters={filters}
-              isAddingText={isAddingText}
-              setIsAddingText={setIsAddingText}
-              isCropping={isCropping}
-              setIsCropping={setIsCropping}
-              setCropBox={setCropBox}
-              handleDownload={handleDownload}
-              applyCrop={applyCrop}
-              cropBox={cropBox}
-            />
-
-            {/* Text Controls */}
-            {isAddingText && (
-              <TextControls
-                text={text}
-                setText={setText}
-                textStyle={textStyle}
-                setTextStyle={setTextStyle}
-                fonts={fonts}
-              />
+            {/* Error Alert */}
+            {error && (
+              <Alert variant="destructive" className="animate-in slide-in-from-top">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
             )}
 
-            {/* Crop Controls */}
-            {isCropping && (
-              <CropControls
-                showGrid={showGrid}
-                setShowGrid={setShowGrid}
-                cropAspectRatio={cropAspectRatio}
-                setCropAspectRatio={setCropAspectRatio}
-                isGridSnapping={isGridSnapping}
-                setIsGridSnapping={setIsGridSnapping}
-                cropBox={cropBox}
+            {/* Header Controls */}
+            <div className="flex justify-between items-center">
+              <div className="flex gap-2">
+                {/* Upload Button */}
+                <Button
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isLoading}
+                  className="flex items-center gap-2"
+                >
+                  {isLoading ? (
+                    <Loader className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Upload className="w-4 h-4" />
+                  )}
+                  Upload Image
+                </Button>
+
+                {/* History Controls */}
+                {image && (
+                  <>
+                    <Button
+                      onClick={handleUndo}
+                      disabled={historyIndex <= 0 || isLoading}
+                      title="Undo"
+                    >
+                      <Undo className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      onClick={handleRedo}
+                      disabled={historyIndex >= history.length - 1 || isLoading}
+                      title="Redo"
+                    >
+                      <Redo className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      onClick={handleReset}
+                      disabled={!originalImage || isLoading}
+                      title="Reset"
+                    >
+                      <CircleOff className="w-4 h-4" />
+                      Reset
+                    </Button>
+                  </>
+                )}
+              </div>
+              {/* Hidden File Input */}
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleImageUpload}
+                accept={ALLOWED_FILE_TYPES.join(',')}
+                className="hidden"
               />
+            </div>
+
+            {/* Canvas Container */}
+            <div className="relative border rounded-lg overflow-hidden">
+              <div className="absolute inset-0 bg-checkered" /> {/* Background pattern */}
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+                  <Loader className="w-8 h-8 animate-spin text-white" />
+                </div>
+              )}
+              <canvas
+                ref={canvasRef}
+                onClick={handleCanvasClick}
+                onMouseDown={handleCanvasMouseDown}
+                onMouseMove={handleCanvasMouseMove}
+                onMouseUp={handleCanvasMouseUp}
+                onMouseLeave={handleCanvasMouseUp}
+                className="relative z-[1] max-w-full h-auto cursor-pointer"
+              />
+
+              {/* Empty State */}
+              {!image && !isLoading && (
+                <div className="text-center p-8 text-gray-500">
+                  <Upload className="w-12 h-12 mx-auto mb-4" />
+                  <p>Upload an image to begin editing</p>
+                  <p className="text-sm mt-2">
+                    Supports JPEG, PNG, GIF, and WebP formats
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Image Information */}
+            {image && (
+              <div className="text-sm text-gray-500 flex justify-between items-center">
+                <span>
+                  Dimensions: {imageSize.width} × {imageSize.height} pixels
+                </span>
+                {isSaving && (
+                  <span className="flex items-center gap-2">
+                    <Loader className="w-4 h-4 animate-spin" />
+                    Processing...
+                  </span>
+                )}
+              </div>
             )}
-          </div>
-        )}
+
+            {/* Editor Controls */}
+            {image && (
+              <div className="flex flex-col gap-4">
+                {/* Image Controls */}
+                <ImageControls
+                  adjustments={adjustments}
+                  setAdjustments={setAdjustments}
+                  filter={filter}
+                  setFilter={setFilter}
+                  filters={filters}
+                  isAddingText={isAddingText}
+                  setIsAddingText={setIsAddingText}
+                  isCropping={isCropping}
+                  setIsCropping={setIsCropping}
+                  setCropBox={setCropBox}
+                  handleDownload={handleDownload}
+                  applyCrop={applyCrop}
+                  cropBox={cropBox}
+                />
+
+                {/* Text Controls */}
+                {isAddingText && (
+                  <TextControls
+                    text={text}
+                    setText={setText}
+                    textStyle={textStyle}
+                    setTextStyle={setTextStyle}
+                    fonts={fonts}
+                  />
+                )}
+
+                {/* Crop Controls */}
+                {isCropping && (
+                  <CropControls
+                    showGrid={showGrid}
+                    setShowGrid={setShowGrid}
+                    cropAspectRatio={cropAspectRatio}
+                    setCropAspectRatio={setCropAspectRatio}
+                    isGridSnapping={isGridSnapping}
+                    setIsGridSnapping={setIsGridSnapping}
+                    cropBox={cropBox}
+                  />
+                )}
+              </div>
+            )}
+            </div>
+        </Card>
+      </div>
     </div>
-      </Card >
-    </div >
   );
 };
 

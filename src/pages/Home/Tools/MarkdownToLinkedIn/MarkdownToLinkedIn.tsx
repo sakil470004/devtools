@@ -57,48 +57,54 @@ const MarkdownToLinkedIn = () => {
     toast.success("Copied to clipboard!");
   }
   return (
-    <div className="container mx-auto px-4 py-10">
-      <h2 className="text-4xl font-bold mb-8 text-center flex items-center justify-center text-blue-600">
-        <FaLinkedin className="mr-2" /> Markdown to LinkedIn Post
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Input TextBox */}
-        <div>
-          <label
-            htmlFor="markdownInput"
-            className="block text-lg font-medium mb-2 text-gray-700"
-          >
-            Markdown Input
-          </label>
-          <textarea
-            id="markdownInput"
-            className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none bg-white focus:ring-2 focus:ring-blue-500"
-            value={markdown}
-            onChange={(e) => setMarkdown(e.target.value)}
-            placeholder="Enter your Markdown text here..."
-          ></textarea>
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <div className="container mx-auto px-4 py-10 flex-1">
+        <div className="mb-12 text-center">
+          <div className="inline-block px-8 py-6 rounded-2xl shadow-xl bg-gradient-to-r from-blue-100/80 to-gray-50/80 border border-blue-200/60">
+            <h2 className="text-4xl font-extrabold mb-3 text-blue-700 tracking-tight font-mono drop-shadow-lg flex items-center justify-center">
+              <FaLinkedin className="mr-2" /> Markdown to LinkedIn
+            </h2>
+          </div>
         </div>
-        {/* Output TextBox */}
-        <div className="relative">
-          <label
-            htmlFor="linkedinOutput"
-            className="block text-lg font-medium mb-2 text-gray-700"
-          >
-            LinkedIn Output
-          </label>
-          <div
-            id="linkedinOutput"
-            className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none bg-white focus:ring-2 focus:ring-blue-500 overflow-auto"
-            dangerouslySetInnerHTML={{ __html: linkedinText }}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Input TextBox */}
+          <div>
+            <label
+              htmlFor="markdownInput"
+              className="block text-lg font-medium mb-2 text-gray-700"
+            >
+              Markdown Input
+            </label>
+            <textarea
+              id="markdownInput"
+              className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none bg-white focus:ring-2 focus:ring-blue-500"
+              value={markdown}
+              onChange={(e) => setMarkdown(e.target.value)}
+              placeholder="Enter your Markdown text here..."
+            ></textarea>
+          </div>
+          {/* Output TextBox */}
+          <div className="relative">
+            <label
+              htmlFor="linkedinOutput"
+              className="block text-lg font-medium mb-2 text-gray-700"
+            >
+              LinkedIn Output
+            </label>
+            <div
+              id="linkedinOutput"
+              className="textarea textarea-bordered w-full h-[calc(100vh-30vh)] p-4 rounded-lg border-2 border-gray-300 focus:outline-none bg-white focus:ring-2 focus:ring-blue-500 overflow-auto"
+              dangerouslySetInnerHTML={{ __html: linkedinText }}
 
-          ></div>
+            ></div>
 
-          <button
-            onClick={handleCopy}
-            className="absolute top-10 right-4 m-2 p-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 focus:outline-none"
-          >
-            <FaCopy />
-          </button>
+            <button
+              onClick={handleCopy}
+              className="absolute top-10 right-4 m-2 p-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 focus:outline-none"
+            >
+              <FaCopy />
+            </button>
+          </div>
         </div>
       </div>
     </div>

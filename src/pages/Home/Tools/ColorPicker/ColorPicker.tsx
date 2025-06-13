@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const ColorPicker: React.FC = () => {
+export default function ColorPicker() {
   const [color, setColor] = useState('#000000');
 
   const handleChange = (color: { hex: React.SetStateAction<string>; }) => {
@@ -65,11 +65,15 @@ const ColorPicker: React.FC = () => {
   })();
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col container mx-auto items-center justify-center py-10">
-      <div className="bg-white shadow-xl rounded-lg p-8 w-full">
-        <h2 className="text-4xl font-bold text-center mb-8 flex items-center justify-center text-blue-600">
-          <FaPalette className="mr-2" /> Color Picker Tool
-        </h2>
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <div className="container mx-auto px-4 py-10 flex-1">
+        <div className="mb-12 text-center">
+          <div className="inline-block px-8 py-6 rounded-2xl shadow-xl bg-gradient-to-r from-blue-100/80 to-gray-50/80 border border-blue-200/60">
+            <h2 className="text-4xl font-extrabold mb-3 text-blue-700 tracking-tight font-mono drop-shadow-lg flex items-center justify-center">
+              <FaPalette className="mr-2 text-blue-700" /> Color Picker
+            </h2>
+          </div>
+        </div>
         <div className="flex flex-col items-center mb-8">
           <SketchPicker color={color} onChangeComplete={handleChange} />
           <button
@@ -115,5 +119,3 @@ const ColorPicker: React.FC = () => {
     </div>
   );
 };
-
-export default ColorPicker;
